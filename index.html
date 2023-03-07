@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vue Basics</title>
+  <title>Vue | simple game</title>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script src="https://unpkg.com/vue@next" defer></script>
@@ -44,9 +44,23 @@
     </section>
     <section id="log" class="container">
       <h2>Battle Log</h2>
-      <ul></ul>
+      <ul>
+        <li v-for="log in battleLog">
+          <span
+            :class="{'log--player': log.actionBy === 'player','log--monster': log.actionBy === 'monster'}">{{log.actionBy}}
+          </span>
+          <span>
+            <span v-if="log.actionType === 'attack'"> Attacks and deals </span>
+            <span v-else> heal </span>
+          </span>
+          <span :class="{'log--damage': log.actionType === 'attack','log--heal': log.actionType === 'heal'}">
+            {{log.actionValue}}
+          </span>
+        </li>
+      </ul>
     </section>
   </div>
 </body>
 
+</html>
 </html>
