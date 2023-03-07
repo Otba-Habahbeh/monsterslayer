@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue Basics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/vue@next" defer></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Monster Slayer</h1>
+  </header>
+  <div id="game">
+    <section id="monster" class="container">
+      <h2>Monster Health</h2>
+      <div class="healthbar">
+        <div class="healthbar__value" :style="monsterHealthBar">{{monsterHealth}}</div>
+      </div>
+    </section>
+    <section id="player" class="container">
+      <h2>Your Health</h2>
+      <div class="healthbar">
+        <div class="healthbar__value" :style="playerHealthBar">{{playerHealth}}</div>
+      </div>
+    </section>
+    <section class="container" v-if="result">
+      <h2 v-if="result === 'lose'">Game Over <p> You Lose :(</p>
+      </h2>
+      <h2 v-else-if="result === 'win'">You Win!</h2>
+      <h2 v-else>It's Draw</h2>
+      <button @click="startNewGame">Start New Game</button>
+    </section>
+    <section id="controls" v-else>
+      <button @click="attackMonester">ATTACK</button>
+      <button @click="specialAttack" :disabled="counterRoundSpecialAttack === 2">SPECIAL ATTACK
+        ({{counterRoundSpecialAttack}}/2)</button>
+      <button @click="healPlayer" :disabled="counterRoundHeal === 1">HEAL ({{counterRoundHeal}}/1)</button>
+      <button @click="surrendPlayer">SURRENDER</button>
+    </section>
+    <section id="log" class="container">
+      <h2>Battle Log</h2>
+      <ul></ul>
+    </section>
+  </div>
+</body>
+
+</html>
