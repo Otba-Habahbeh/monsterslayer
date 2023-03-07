@@ -51,7 +51,7 @@
           </span>
           <span>
             <span v-if="log.actionType === 'attack'"> Attacks and deals </span>
-            <span v-else> heal himself </span>
+            <span v-else> heals himself by </span>
           </span>
           <span :class="{'log--damage': log.actionType === 'attack','log--heal': log.actionType === 'heal'}">
             {{log.actionValue}}
